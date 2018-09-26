@@ -9,7 +9,6 @@ var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-const { check, validationResult } = require('express-validator/check');
 
 // Connect to db
 mongoose.connect('mongodb://localhost/eshopcart');
@@ -29,6 +28,9 @@ app.set('view engine', 'ejs');
 // Set public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set global errors variable
+app.locals.errors = null;
+
 // Body parser middleware
 // 
 // parse application/x-www-form-urlencoded
@@ -43,25 +45,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true }
 }));
-
-// Express Validator middleware
-app.post('/user', [
-  // username must be an email
-  check('username').isEmail(),
-  // password must be at least 5 chars long
-  check('password').isLength({ min: 5 })
-], (req, res) => {
-  // Finds the validation errors in this request and wraps them in an object with handy functions
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-
-  User.create({
-    username: req.body.username,
-    password: req.body.password
-  }).then(user => res.json(user));
-});
 
 // Express Messages middleware
 app.use(require('connect-flash')());
