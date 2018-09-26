@@ -14,3 +14,8 @@ and open the template in the editor.
   text-align: center;
 }
 
+.general-title {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
