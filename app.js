@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+
 // Connect to db
 mongoose.connect('mongodb://localhost/eshopcart');
 var db = mongoose.connection;
