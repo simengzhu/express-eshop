@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+
 // Connect to db
 mongoose.connect('mongodb://localhost/eshopcart');
 var db = mongoose.connection;
@@ -41,9 +42,9 @@ app.use(bodyParser.json())
 // Express session middleware
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+//  cookie: { secure: true }
 }));
 
 // Express Messages middleware
@@ -65,12 +66,4 @@ var port = 3000;
 app.listen(port, function() {
     console.log('Server started on port ' + port);
 });
-
-//const express = require('express')
-//const app = express()
-//const port = 3000
-//
-//app.get('/', (req, res) => res.send('Hello World!'))
-//
-//app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
