@@ -12,7 +12,7 @@ const { check, validationResult } = require('express-validator/check');
 var Category = require('../models/category');
 
 /*
- * GET category index
+ * GET category
  */
 router.get('/', function(req, res) {
     Category.find(function(err, categories) { 
@@ -139,7 +139,7 @@ router.post('/edit-category/:id', [
                         }
 
                         req.flash('success', 'Category edited');
-                        res.redirect('/admin/pages/edit-page/'+page.slug);
+                        res.redirect('/admin/categories/edit-category/'+id);
                     });
                 });
             }
