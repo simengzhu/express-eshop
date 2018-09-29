@@ -34,3 +34,17 @@ and open the template in the editor.
     width: 100px;
     height: 100px;
 }
+
+ul.gallery {
+    padding: 0;
+}
+
+ul.gallery li:first-child {
+    margin-left: 0;
+}
+
+ul.gallery li {
+    margin-left: 20px;
+    display: inline-block;
+    list-style: none;
+}

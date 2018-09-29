@@ -66,7 +66,7 @@
         <% if (image != "thumbs") {%>
             <li>
                 <img src="/product_images/<%= id %>/gallery/thumbs/<%= image %>">&nbsp;
-                <a class="confirmDeletion" href="/admin/products/delete-image/<% image %>?id=<% id %>">delete</a>
+                <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>?id=<%= id %>">delete</a>
             </li>
         <% } %>
     <%});%> 
@@ -107,10 +107,10 @@
     Dropzone.options.dropzoneForm = {
         acceptedFiles: "image/*", 
         init: function() {
-            this.on("queueComplete", function(file) {
-//                setTimeout(function() {
-//                    location.reload();
-//                }, 1000);
+            this.on("queuecomplete", function(file) {
+                setTimeout(function() {
+                    location.reload();
+                }, 1000);
             });
         }
     }
