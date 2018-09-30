@@ -19,5 +19,31 @@ and open the template in the editor.
   padding-bottom: 1.5rem;
 }
 
+img.pimage {
+    width: 150px;
+}
 
+a.pa {
+    display:inline-block;
+    height: 160px;
+}
+
+.row.products .p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+img.spi {
+    width: 100%;
+}
+
+.product_title {
+    width: 100%;
+}
+
+ul.gallery li {
+    display: inline-block;
+    margin: 20px;
+    list-style: none;
+}
 
