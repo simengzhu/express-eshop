@@ -33,3 +33,17 @@ a.pa {
     margin-bottom: 20px;
 }
 
+img.spi {
+    width: 100%;
+}
+
+.product_title {
+    width: 100%;
+}
+
+ul.gallery li {
+    display: inline-block;
+    margin: 20px;
+    list-style: none;
+}
+
