@@ -44,6 +44,22 @@
     </tr>
     
 </table>
+
+<form class="pp" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_cart">
+<input type="hidden" name="upload" value="1">
+<input type="hidden" name="business" value="scarecrow1874@gmail.com">
+<% var num = 0; %>
+<% cart.forEach(function(p) { %>
+    <% num++ %>
+    <input type="hidden" name="item_name_<%= num %>" value="<%= p.title %>">
+    <input type="hidden" name="amount_<%= num %>" value="<%= p.price %>">
+    <input type="hidden" name="quantity_<%= num %>" value="<%= p.qty %>">
+<% }); %>
+<input type="hidden" name="amount" value="<%= total %>">
+<input type="submit" value="PayPal">
+</form>
+
 <% } else { %>
 <h3 class="text-center">Your cart is empty.</h3>
 <% } %>
@@ -55,6 +71,15 @@ $(function() {
         if (!confirm('Confirm clear cart')) {
             return false;
         }
+    });
+    
+    $('a.buynow').on('click', function (e) {
+        e.preventDefault();
+        
+        $.get('/cart/buynow', function() {
+            $('form.pp input[type=submit]').click();
+            $('.ajaxbg').show();
+        });
     });
 });
     
