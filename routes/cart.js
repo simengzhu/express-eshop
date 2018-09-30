@@ -57,6 +57,17 @@ router.get('/add/:product', function (req, res) {
 
 });
 
-
+/*
+ * GET checkout page
+ */
+router.get('/checkout', function (req, res) {
+    
+    res.render('checkout', {
+        title: 'Checkout',
+        cart: req.session.cart,
+        
+    });
+    
+});
 // Exports
 module.exports = router;
