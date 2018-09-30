@@ -11,6 +11,8 @@ var fs = require('fs-extra');
 var resizeImg = require('resize-img');
 var path = require('path');
 const { check, validationResult } = require('express-validator/check');
+var auth = require('../config/auth');
+var isAdmin = auth.isAdmin;
 
 // Get Product model
 var Product = require('../models/product');
@@ -21,7 +23,7 @@ var Category = require('../models/category');
 /*
  * GET products index
  */
-router.get('/', function(req, res) {
+router.get('/', isAdmin, function(req, res) {
     var count;
     Product.count(function(err, c){
         count = c;
@@ -38,7 +40,7 @@ router.get('/', function(req, res) {
 /*
  * GET add product
  */
-router.get('/add-product', function(req, res) {
+router.get('/add-product', isAdmin, function(req, res) {
     
     var title = "";
     var desc = "";
@@ -158,7 +160,7 @@ router.post('/add-product/', [
 /*
  * GET edit product
  */
-router.get('/edit-product/:id', function(req, res) {    
+router.get('/edit-product/:id', isAdmin, function(req, res) {    
     
     var errors;
     if (req.session.errors) {
@@ -318,7 +320,7 @@ router.post('/product-gallery/:id', function(req, res) {
 /*
  * GET delete page
  */
-router.get('/delete-image/:image', function(req, res) {
+router.get('/delete-image/:image', isAdmin, function(req, res) {
 
     var oldImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
     var thumbImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
@@ -342,7 +344,7 @@ router.get('/delete-image/:image', function(req, res) {
 /*
  * GET delete product
  */
-router.get('/delete-product/:id', function(req, res) {
+router.get('/delete-product/:id', isAdmin, function(req, res) {
 
     var id = req.params.id;
     var productPath = 'public/product_images/' + id;
